@@ -12,7 +12,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      email: null,
     },
     thoughts: [{
       type: Schema.Types.ObjectId,
