@@ -8,17 +8,17 @@ module.exports = {
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-  // // Get a course
-  // getSingleCourse(req, res) {
-  //   Course.findOne({ _id: req.params.courseId })
-  //     .select('-__v')
-  //     .then((course) =>
-  //       !course
-  //         ? res.status(404).json({ message: 'No course with that ID' })
-  //         : res.json(course)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
+  // Get a course
+  getSingleThought(req, res) {
+    Thought.findOne({ _id: req.params.thoughtId })
+      .select('-__v')
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'No course with that ID' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
   // Create a course
   createThought(req, res) {
     Thought.create(req.body)
