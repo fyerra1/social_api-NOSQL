@@ -90,30 +90,20 @@ module.exports = {
       { $addToSet: { friends: req.params.friendsId } },
       { runValidators: true, new: true }
     )
-    .then((student) => {
-      return User.findOneAndUpdate(
-        {id: req.params.userId},
-        {$set: {friends: student._id}},
-        { runValidators: true, new: true }
-        )
-    }).then((student) => res.json(student))
+    // .then((student) => {
+    //   return User.findOneAndUpdate(
+    //     {id: req.params.userId},
+    //     {$set: {friends: student._id}},
+    //     { runValidators: true, new: true }
+    //     )
+    // }).then((student) => res.json(student))
   .catch((err) => {
     console.log(err);
     return res.status(500).json(err);
   });
   },
 
-//   .then((student) => {
-//     return User.findOneAndUpdate(
-//       {id: req.body.userId},
-//       {$set: {friends: student._id}},
-//       { runValidators: true, new: true }
-//       )
-//   }).then((student) => res.json(student))
-// .catch((err) => {
-//   console.log(err);
-//   return res.status(500).json(err);
-// });
+
   // // Remove assignment from a student
   // removeAssignment(req, res) {
   //   Student.findOneAndUpdate(

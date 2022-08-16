@@ -22,9 +22,6 @@ module.exports = {
   // Create a course
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => {
-        return thought
-      })
         .then((thought) => {
           return User.findOneAndUpdate(
             {id: req.body.userId},
