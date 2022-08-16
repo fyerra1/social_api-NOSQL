@@ -14,7 +14,7 @@ module.exports = {
       .select('-__v')
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: 'No course with that ID' })
+          ? res.status(404).json({ message: 'No user with that ID' })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
@@ -46,17 +46,17 @@ module.exports = {
   //     .catch((err) => res.status(500).json(err));
   // },
   // // Update a course
-  // updateCourse(req, res) {
-  //   Course.findOneAndUpdate(
-  //     { _id: req.params.courseId },
-  //     { $set: req.body },
-  //     { runValidators: true, new: true }
-  //   )
-  //     .then((course) =>
-  //       !course
-  //         ? res.status(404).json({ message: 'No course with this id!' })
-  //         : res.json(course)
-  //     )
-  //     .catch((err) => res.status(500).json(err));
-  // },
+  updateThought(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
