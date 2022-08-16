@@ -82,25 +82,19 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // // Add an assignment to a student
-  addAssignment(req, res) {
+  addFriend(req, res) {
     console.log('You are adding an assignment');
     console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.params.friendsId } },
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
-    // .then((student) => {
-    //   return User.findOneAndUpdate(
-    //     {id: req.params.userId},
-    //     {$set: {friends: student._id}},
-    //     { runValidators: true, new: true }
-    //     )
-    // }).then((student) => res.json(student))
-  .catch((err) => {
-    console.log(err);
-    return res.status(500).json(err);
-  });
+    .then((friend) => res.json(friend))
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).json(err);
+    });
   },
 
 
