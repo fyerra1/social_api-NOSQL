@@ -42,7 +42,8 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
-          : Thought.deleteMany({ _id: { $in: user.thoughts } })
+          : Thought.deleteMany({ _id: { $in: user.thoughts } }) 
+          
       )
       .then(() => res.json({ message: 'User and associated thoughts deleted!' }))
       .catch((err) => res.status(500).json(err));
@@ -63,7 +64,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // Add an friend to a user
+  // Add a friend to a user
   addFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
