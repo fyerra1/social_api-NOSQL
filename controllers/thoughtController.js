@@ -67,7 +67,7 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-    // Add a friend to a user
+    // Add a reaction to a thought
     addReaction(req, res) {
       Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
@@ -80,7 +80,7 @@ module.exports = {
       });
     },
   
-    // Remove friend from a user
+    // Remove reaction from a thought
     removeReaction(req, res) {
       Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
