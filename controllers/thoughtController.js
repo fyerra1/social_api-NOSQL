@@ -51,7 +51,7 @@ module.exports = {
       .then(() => res.json({ message: 'Thought deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
-  
+
   // Update a thought
   updateThought(req, res) {
     Thought.findOneAndUpdate(
@@ -66,4 +66,35 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+    // Add a friend to a user
+    addReaction(req, res) {
+      Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { reactions: req.body } },
+        { runValidators: true, new: true }
+      )
+      .then((reaction) => res.json(reaction))
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
+    },
+  
+    // Remove friend from a user
+    // removeFriend(req, res) {
+    //   User.findOneAndUpdate(
+    //     { _id: req.params.userId },
+    //     { $pull: { friends: req.params.friendId } },
+    //     { runValidators: true, new: true }
+    //   )
+    //     .then((friend) =>
+    //       !friend
+    //         ? res
+    //             .status(404)
+    //             .json({ message: 'No friend found with that ID :(' })
+    //         : res.json(friend)
+    //     )
+    //     .catch((err) => res.status(500).json(err));
+    // }
 };
