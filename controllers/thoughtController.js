@@ -72,7 +72,6 @@ module.exports = {
       Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $addToSet: { reactions: req.body } },
-        // { runValidators: true, new: true }
       )
       .then((reaction) => res.json(reaction))
       .catch((err) => {
@@ -82,19 +81,19 @@ module.exports = {
     },
   
     // Remove friend from a user
-    // removeFriend(req, res) {
-    //   User.findOneAndUpdate(
-    //     { _id: req.params.userId },
-    //     { $pull: { friends: req.params.friendId } },
-    //     { runValidators: true, new: true }
-    //   )
-    //     .then((friend) =>
-    //       !friend
-    //         ? res
-    //             .status(404)
-    //             .json({ message: 'No friend found with that ID :(' })
-    //         : res.json(friend)
-    //     )
-    //     .catch((err) => res.status(500).json(err));
-    // }
+    removeReaction(req, res) {
+      Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: {reactionId: req.params.reactionId} } },
+        { new: true }
+      )
+        .then((reaction) =>
+          !reaction
+            ? res
+                .status(404)
+                .json({ message: 'No reaction found with that ID :(' })
+            : res.json(reaction)
+        )
+        .catch((err) => res.status(500).json(err));
+    }
 };
