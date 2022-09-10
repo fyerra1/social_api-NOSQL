@@ -12,8 +12,7 @@ const thoughtSchema = new Schema(
     },
     createdAt: {
       type: Date,
-      default: Date.now,
-      get: (createdAt) => { return moment(createdAt).format('MMM Do, YYYY, [at] hh:mm a')}
+      default: Date.now
     },
     username: {
       type: String,
@@ -29,9 +28,10 @@ const thoughtSchema = new Schema(
   }
 );
 
-// function formatDate(createdAt) {
-//   return moment(createdAt).format("MMM Do, YYYY")
-// }
+thoughtSchema.virtual('formatedDate').get(function (){
+  return moment(this.createdAt).format("MMM Do, YYYY, [at] hh:mm a")
+})
+
 
 thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
