@@ -7,6 +7,10 @@
   ## Video Recording
   [WALK-THROUGH VIDEO](https://drive.google.com/drive/folders/1eBZAD336dVGj7XKMfhvl_BHAKF--iBR-?usp=sharing)
 
+  ## Screenshots:
+  ![](./assets/emailvalidate.png)
+  ![](./assets/timeformat.png)
+
   ## Table of Contents
   #### [Installation](#installation)
   #### [Usage](#usage)
